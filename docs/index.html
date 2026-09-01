@@ -105,7 +105,6 @@
   Fixed supply, no owner, no tax, no utility, and unusually honest about all four.</p>
   <div class="cta">
     <a class="btn" href="https://github.com/dylanquesada/godel-coin">Read the 100 lines →</a>
-    <a class="btn ghost" href="#qbit">Meet $QBIT</a>
     <a class="btn ghost" href="#disclaimer">What this is not</a>
   </div>
 </header>
@@ -121,8 +120,8 @@
   <div class="cell"><div class="k">Upgradeable</div><div class="v r">No proxy</div></div>
   <div class="cell"><div class="k">Deployed anywhere</div><div class="v r">No</div></div>
   <div class="cell"><div class="k">Soulbound variant</div><div class="v g">Cannot move</div></div>
-  <div class="cell"><div class="k">Companion coin</div><div class="v"><a href="#qbit" style="text-decoration:none">$QBIT ↓</a></div></div>
-  <div class="cell"><div class="k">Test assertions</div><div class="v g">71 passing</div></div>
+  <div class="cell"><div class="k">Companion coin</div><div class="v"><a href="https://dylanquesada.github.io/quantum-coin/" style="text-decoration:none">$QBIT ↗</a></div></div>
+  <div class="cell"><div class="k">Test assertions</div><div class="v g">33 passing</div></div>
 </div>
 
 <h2>The three theorems</h2>
@@ -150,28 +149,6 @@ theorem()              -> the undecidable sentence
 <p class="sub">The absences are the whole pitch. There is no second contract, no upgrade path, and no
 privileged address — a memecoin you can finish reading before you decide not to buy it.</p>
 
-<h2 id="qbit">$QBIT — the observer-effect companion</h2>
-<p class="sub">Where $GODEL cannot prove itself, <b style="color:var(--amber)">$QBIT</b> cannot be
-counted until you look. Your balance is genuinely indeterminate before measurement — a live draw
-that changes every block and is <em>not</em> what you will get. <code>measure()</code> collapses it
-once, permanently, and only a collapsed balance can move.</p>
-<pre>balanceOf(you)     -> 0x3f...    // superposed: redrawn every block, non-binding
-measure()          -> collapses YOUR balance, irreversibly
-isObserved(addr)   -> true once measured
-entangle(addr)     -> mutual only; both parties must name each other
-transfer(...)      -> reverts unless BOTH sides have collapsed
-
-// supply 6,626,070,150 — Planck's constant, exponent discarded
-// totalMeasured + reserve + burned == MAX_SUPPLY, after every operation</pre>
-<p class="sub">Entangled pairs collapse together and <b>anticorrelated</b>: the two draws sum to
-exactly <code>2 × QUANTUM</code>, so measuring yours determines theirs. The partner's share is
-reserved before either collapse is written, so a depleted reserve can never leave a pair
-half-collapsed. Two caveats stated in the contract itself: it is <b>not ERC-20 compliant</b> on
-purpose — a non-deterministic <code>balanceOf</code> is something no wallet expects — and the
-randomness is <code>prevrandao</code>-based and <b>not secure</b>, since a validator could
-influence its own collapse. Thematically acceptable for a coin about the impossibility of knowing
-things. Never reuse the pattern where money depends on it.</p>
-
 <h2>Two variants of $GODEL</h2>
 <p class="sub"><code>GodelCoin.sol</code> is a normal fixed-supply ERC-20 — transferable, therefore
 tradable. <code>GodelCoinBound.sol</code> is the same joke with the exit welded shut: the whole
@@ -195,11 +172,11 @@ No market, no price, nobody to be hurt by it. A coin that can only be held and p
 
 <div class="warn">
   <h3>Not an investment</h3>
-  <p>$GODEL and $QBIT are jokes and code samples. It is not a security, not an investment product, not financial advice,
+  <p>$GODEL is a joke and a code sample. It is not a security, not an investment product, not financial advice,
   and not a promise of anything.</p>
   <ul class="no">
     <li>No token is being sold, offered, presold, or airdropped here.</li>
-    <li>No contract is deployed. There is no official address, and any address claiming to be either token is not.</li>
+    <li>No contract is deployed. There is no official address, and any address claiming to be this token is not.</li>
     <li>No team, no roadmap, no treasury, no revenue, no listing, no liquidity.</li>
     <li>No one is obligated to buy it from you, ever.</li>
   </ul>
@@ -209,7 +186,7 @@ No market, no price, nobody to be hurt by it. A coin that can only be held and p
 </div>
 
 <footer>
-  <p>MIT licensed · source: <a href="https://github.com/dylanquesada/godel-coin">github.com/dylanquesada/godel-coin</a></p>
+  <p>MIT licensed · source: <a href="https://github.com/dylanquesada/godel-coin">github.com/dylanquesada/godel-coin</a> · companion: <a href="https://dylanquesada.github.io/quantum-coin/">$QBIT</a></p>
   <p>Unofficial fan project · not affiliated with Godel Terminal · <code>G(x) ≡ ¬Prov(⌜G(x)⌝)</code></p>
 </footer>
 </div>
