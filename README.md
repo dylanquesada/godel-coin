@@ -36,10 +36,12 @@ theorem()             // "This token is not provable within this token."
 ```
 contracts/GodelCoin.sol   the token (transferable)
 contracts/GodelCoinBound.sol  soulbound variant: fixed supply, one holder, cannot move
+contracts/QuantumCoin.sol $QBIT, the observer-effect companion coin
 test/GodelCoin.t.sol      Foundry tests (needs forge + forge-std)
 scripts/compile.js        solc compile -> build-abi.json
 scripts/test.mjs          deploys into an in-memory EVM and asserts behavior (no forge needed)
 scripts/test-bound.mjs    17 assertions that the soulbound variant cannot move, from any caller
+scripts/test-quantum.mjs  38 assertions: superposition, collapse, entanglement, accounting
 docs/                     GitHub Pages site (index.html, 404.html, .nojekyll)
 ```
 
@@ -71,6 +73,36 @@ not a limitation of it.
 
 ```bash
 node scripts/test-bound.mjs   # 17 checks, including transfer attempts from a stranger
+```
+
+## $QBIT — QuantumCoin
+
+The companion coin. Where $GODEL cannot prove itself, $QBIT cannot be counted until you look.
+
+`balanceOf` on a superposed address returns a **live draw** — a real number from your amplitude
+that changes every block and is not what you will get. `measure()` collapses it once, permanently,
+and only a collapsed balance can be transferred. You cannot send to an address that has not
+collapsed either: an observed token may never re-enter a superposition.
+
+`entangle(addr)` is mutual — it binds only when both parties name each other. Entangled pairs
+collapse together and **anticorrelated**: the two draws sum to exactly `2 * QUANTUM`, so measuring
+yours determines theirs. The partner's share is reserved before either collapse is written, so a
+depleted reserve can never leave a pair half-collapsed.
+
+Supply is 6,626,070,150 — Planck's constant with the exponent thrown away. It is accounted for
+exactly at every step: `totalMeasured + reserve + burned == MAX_SUPPLY`, asserted after each
+operation in the test suite.
+
+Two honest caveats, stated in the contract as well:
+
+- **Not ERC-20 compliant, on purpose.** A non-deterministic `balanceOf` is something no wallet
+  expects. That is the joke; do not pool it.
+- **The randomness is not secure.** It is `prevrandao`-based, so a validator can influence its own
+  collapse. Thematically acceptable for a coin about the impossibility of knowing things — but
+  never reuse the pattern where money depends on the outcome.
+
+```bash
+node scripts/test-quantum.mjs   # 38 checks
 ```
 
 ## The GitHub Pages lander
