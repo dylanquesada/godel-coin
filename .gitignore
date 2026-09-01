@@ -1,0 +1,4 @@
+node_modules/
+build-abi.json
+out/
+cache/

@@ -1,0 +1,24 @@
+{
+  "name": "godel-coin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@ethereumjs/common": "^4.4.0",
+    "@ethereumjs/tx": "^5.4.0",
+    "@ethereumjs/util": "^9.1.0",
+    "@ethereumjs/vm": "^8.1.1",
+    "solc": "^0.8.24",
+    "viem": "^2.56.1"
+  }
+}
