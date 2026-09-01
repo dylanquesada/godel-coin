@@ -119,6 +119,7 @@
   <div class="cell"><div class="k">Owner / admin</div><div class="v r">None</div></div>
   <div class="cell"><div class="k">Upgradeable</div><div class="v r">No proxy</div></div>
   <div class="cell"><div class="k">Deployed anywhere</div><div class="v r">No</div></div>
+  <div class="cell"><div class="k">Soulbound variant</div><div class="v g">Cannot move</div></div>
 </div>
 
 <h2>The three theorems</h2>
@@ -145,6 +146,14 @@ theorem()              -> the undecidable sentence
 // absent by design: mint, owner, pause, blacklist, setFee, upgradeTo</pre>
 <p class="sub">The absences are the whole pitch. There is no second contract, no upgrade path, and no
 privileged address — a memecoin you can finish reading before you decide not to buy it.</p>
+
+<h2>Two variants</h2>
+<p class="sub"><code>GodelCoin.sol</code> is a normal fixed-supply ERC-20 — transferable, therefore
+tradable. <code>GodelCoinBound.sol</code> is the same joke with the exit welded shut: the whole
+supply is minted once to one immutable holder, and <code>transfer</code>, <code>transferFrom</code>
+and <code>approve</code> revert unconditionally — for the holder as much as for anyone else. Even a
+zero-value transfer reverts, so a DEX router probing the token fails before it can pool it.
+No market, no price, nobody to be hurt by it. A coin that can only be held and proven, never exchanged.</p>
 
 <h2 id="disclaimer">Disclaimer — please actually read this</h2>
 

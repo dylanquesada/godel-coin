@@ -34,10 +34,12 @@ theorem()             // "This token is not provable within this token."
 ## Layout
 
 ```
-contracts/GodelCoin.sol   the token
+contracts/GodelCoin.sol   the token (transferable)
+contracts/GodelCoinBound.sol  soulbound variant: fixed supply, one holder, cannot move
 test/GodelCoin.t.sol      Foundry tests (needs forge + forge-std)
 scripts/compile.js        solc compile -> build-abi.json
 scripts/test.mjs          deploys into an in-memory EVM and asserts behavior (no forge needed)
+scripts/test-bound.mjs    17 assertions that the soulbound variant cannot move, from any caller
 docs/                     GitHub Pages site (index.html, 404.html, .nojekyll)
 ```
 
@@ -49,6 +51,26 @@ node scripts/compile.js   # compiles, writes build-abi.json
 node scripts/test.mjs     # 16 checks against a real EVM
 forge test                # optional, if you have foundry installed
 open docs/index.html
+```
+
+## Two variants
+
+**`GodelCoin.sol`** — a normal fixed-supply ERC-20. Transferable, therefore tradable,
+therefore something a stranger can lose money on.
+
+**`GodelCoinBound.sol`** — the same joke with the exit welded shut. The full supply is minted
+once to a single immutable `holder`, and `transfer`, `transferFrom` and `approve` all revert
+unconditionally — for the holder as much as for anyone else. Even a zero-value transfer reverts,
+so a DEX router probing the token fails before it can pool it. `allowance()` is always 0.
+The holder may `burn()`, and that is the only state change the contract will ever accept.
+
+It is deliberately **not** ERC-20 compliant. The read surface matches so wallets and explorers
+render a balance, but nothing can move. There is no market, no price, and no way for anyone to
+buy it from you — which means there is no one to be hurt by it. That is the point of the variant,
+not a limitation of it.
+
+```bash
+node scripts/test-bound.mjs   # 17 checks, including transfer attempts from a stranger
 ```
 
 ## The GitHub Pages lander
